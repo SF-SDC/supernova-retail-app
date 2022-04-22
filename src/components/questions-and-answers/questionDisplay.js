@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import apiMaster from '../../apiMaster';
-import Answer from './answer';
-import Card from 'react-bootstrap/Card';
-import Helpful from '.././ratings-and-reviews/helpful.js';
+import React, { useState, useEffect } from "react";
+import apiMaster from "../../apiMaster";
+import Answer from "./answer";
+import Card from "react-bootstrap/Card";
+import Helpful from ".././ratings-and-reviews/helpful.js";
 import {
   displayAmountState,
   allQuestionsState,
@@ -10,8 +10,8 @@ import {
   searchState,
   showSearchState,
   questionBody,
-} from './qa-atoms';
-import { useRecoilState, useRecoilValue } from 'recoil';
+} from "./qa-atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const QuestionDisplay = (props) => {
   const [questions, setQuestions] = useRecoilState(allQuestionsState);
@@ -41,19 +41,19 @@ const QuestionDisplay = (props) => {
             return (
               <Card key={question.question_id} className="question">
                 <Card.Header>
-                  Q: {question.question_body}{' '}
-                  <div style={{ float: 'right' }}>
-                    Helpful? <u style={{ cursor: 'pointer' }}> YES</u> (
+                  Q: {question.question_body}{" "}
+                  <div style={{ float: "right" }}>
+                    Helpful? <u style={{ cursor: "pointer" }}> YES</u> (
                     {question.question_helpfulness}) |
                     <u
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: "pointer" }}
                       onClick={() => {
                         setq(question.question_body);
                         setquestionID(question.question_id);
                         props.showModal();
                       }}
                     >
-                      {' '}
+                      {" "}
                       Add Answer
                     </u>
                   </div>
@@ -72,22 +72,22 @@ const QuestionDisplay = (props) => {
           return (
             <Card key={question.question_id} className="question">
               <Card.Header>
-                Q: {question.question_body}{' '}
-                <div style={{ float: 'right' }}>
+                Q: {question.question_body}{" "}
+                <div style={{ float: "right" }}>
                   <Helpful
                     id={question.question_id}
                     widget="question"
                     helpfulCount={question.question_helpfulness}
                   />
                   <u
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                     onClick={() => {
                       setq(question.question_body);
                       setquestionID(question.question_id);
                       props.showModal();
                     }}
                   >
-                    {' '}
+                    {" "}
                     Add Answer
                   </u>
                 </div>
