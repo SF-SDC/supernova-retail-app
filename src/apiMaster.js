@@ -1,20 +1,21 @@
 import axios from "axios";
 const url = "http://127.0.0.1:1128";
+const productUrl = "http://127.0.0.1:4000";
 
 const getProductList = () => {
-  return axios.get(`${url}/products`);
+  return axios.get(`${productUrl}/products`);
 };
 
-const getProductInfo = (id = 66642) => {
-  return axios.get(`${url}/products/${id}`);
+const getProductInfo = (id = 1) => {
+  return axios.get(`${productUrl}/products/${id}`);
 };
 
-const getProductStyles = (id = 66642) => {
-  return axios.get(`${url}/products/${id}/styles`);
+const getProductStyles = (id = 1) => {
+  return axios.get(`${productUrl}/products/${id}/styles`);
 };
 
-const getRelatedProducts = (id = 66642) => {
-  return axios.get(`${url}/products/${id}/related`);
+const getRelatedProducts = (id = 1) => {
+  return axios.get(`${productUrl}/products/${id}/related`);
 };
 
 const getQA = (id = 66642) => {
@@ -72,7 +73,7 @@ const addToCart = (user_token, sku_id) => {
 };
 
 const getSpecificAnswers = (questionId) => {
-  return axios.get(`${url}/qa/${questionId}/answers`);
+  return axios.get(`${url}/qa/questions/${questionId}/answers`);
 };
 
 const askQuestion = (id, text, name, email) => {
