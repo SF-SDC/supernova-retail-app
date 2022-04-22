@@ -1,34 +1,38 @@
 import axios from "axios";
-// const url = "http://18.224.200.47";
-const QuestionsURL = "http://localhost:4000";
+const url = "http://127.0.0.1:1128";
+const questionsURL = "http://127.0.0.1:3000";
 
 const getProductList = () => {
-  return axios.get(`${QuestionsURL}/products`);
+  return axios.get(`${url}/products`);
 };
 
-const getProductInfo = (id = 1) => {
-  return axios.get(`${QuestionsURL}/products/${id}`);
+const getProductInfo = (id = 66642) => {
+  return axios.get(`${url}/products/${id}`);
 };
 
-const getProductStyles = (id = 1) => {
-  return axios.get(`${QuestionsURL}/products/${id}/styles`);
+const getProductStyles = (id = 66642) => {
+  return axios.get(`${url}/products/${id}/styles`);
 };
 
-const getRelatedProducts = (id = 1) => {
-  return axios.get(`${QuestionsURL}/products/${id}/related`);
+const getRelatedProducts = (id = 66642) => {
+  return axios.get(`${url}/products/${id}/related`);
 };
 
-const getQA = (id = 1) => {
-  return axios.get(`${QuestionsURL}/qa/${id}`);
+const getQA = (id = 66642) => {
+  return axios.get(`${questionsURL}/qa/questions?product_id=${id}`);
 };
 
-const getReviewMetaData = (id = 1) => {
-  return axios.get(`${QuestionsURL}/reviews/${id}/meta`);
+const getReviewMetaData = (id = 66642) => {
+  return axios.get(`${url}/reviews/meta?product_id=${id}`);
 };
 
-const getReviewsOfProduct = (id = 1, sortString = "relevant", count = 20) => {
+const getReviewsOfProduct = (
+  id = 66642,
+  sortString = "relevant",
+  count = 20
+) => {
   return axios.get(
-    `${QuestionsURL}/reviews/${id}/list?sort=${sortString}:asc&count=${count}}`
+    `${url}/reviews?product_id=${id}&sort=${sortString}&count=${count}`
   );
 };
 
@@ -37,7 +41,7 @@ const reportReview = (reviewId) => {
 };
 
 const postReview = (
-  id = 1,
+  id = 66642,
   rating,
   summary,
   body,
