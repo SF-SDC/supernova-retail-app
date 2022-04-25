@@ -39,7 +39,7 @@ const QuestionDisplay = (props) => {
         {questions.map((question) => {
           if (question.question_body.indexOf(search) > -1) {
             return (
-              <Card key={question.question_id} className="question">
+              <Card key={question.id} className="question">
                 <Card.Header>
                   Q: {question.question_body}{" "}
                   <div style={{ float: "right" }}>
@@ -49,7 +49,7 @@ const QuestionDisplay = (props) => {
                       style={{ cursor: "pointer" }}
                       onClick={() => {
                         setq(question.question_body);
-                        setquestionID(question.question_id);
+                        setquestionID(question.id);
                         props.showModal();
                       }}
                     >
@@ -58,7 +58,7 @@ const QuestionDisplay = (props) => {
                     </u>
                   </div>
                 </Card.Header>
-                <Answer id={question.question_id} />
+                <Answer id={question.id} />
               </Card>
             );
           }
@@ -92,7 +92,7 @@ const QuestionDisplay = (props) => {
                   </u>
                 </div>
               </Card.Header>
-              <Answer id={question.question_id} />
+              <Answer id={question.id} />
             </Card>
           );
         })}

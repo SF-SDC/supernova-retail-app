@@ -67,9 +67,7 @@ class ProductCard extends React.Component {
         apiMaster
           .getProductStyles(this.props.relatedProducts[i])
           .then(
-            (res) =>
-              res.data.results[0].photos[0].thumbnail_url ||
-              'https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80'
+            (res) => res.data.results[0].photos[0] ? res.data.results[0].photos[0].thumbnail_url : 'https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80'
           )
           .catch((err) => {
             console.log(err);
@@ -91,8 +89,8 @@ class ProductCard extends React.Component {
         apiMaster
           .getProductStyles(this.props.relatedProducts[i])
           .then((res) => ({
-            original_price: res.data.results[0].original_price,
-            sale_price: res.data.results[0].sale_price,
+            original_price: res.data.results[0].original_price || 0,
+            sale_price: res.data.results[0].sale_price || 0,
           }))
           .catch((err) => {
             console.log(err);
