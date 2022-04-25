@@ -6,6 +6,11 @@ const app = express();
 app.use(express.static('dist'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc';
 

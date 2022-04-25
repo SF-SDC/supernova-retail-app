@@ -234,7 +234,7 @@ class PhotoContainer extends React.Component {
           <img
             id="product-photo-main"
             src={
-              this.props.selectedStyle.photos[this.state.selectedPhotoIndex].url
+              (this.props.selectedStyle.photos[this.state.selectedPhotoIndex]) ? this.props.selectedStyle.photos[this.state.selectedPhotoIndex].url : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
             }
             style={
               this.state.photoContainerWidth === "photo-container-zoom" &&

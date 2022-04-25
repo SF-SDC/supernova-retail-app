@@ -1,6 +1,6 @@
 import axios from "axios";
 const url = "http://127.0.0.1:1128";
-const productUrl = "http://127.0.0.1:4000";
+const productUrl = "http://18.188.122.145";
 
 const getProductList = () => {
   return axios.get(`${productUrl}/products`);
