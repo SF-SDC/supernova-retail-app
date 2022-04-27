@@ -83,7 +83,7 @@ const QuestionDisplay = (props) => {
                     style={{ cursor: "pointer" }}
                     onClick={() => {
                       setq(question.question_body);
-                      setquestionID(question.question_id);
+                      setquestionID(question.id);
                       props.showModal();
                     }}
                   >

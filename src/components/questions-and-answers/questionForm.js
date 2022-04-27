@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { useForm } from 'react-hook-form';
-import apiMaster from '../../apiMaster';
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { useForm } from "react-hook-form";
+import apiMaster from "../../apiMaster";
 
 const AskQuestionModal = (props) => {
   const { register, handleSubmit, errors } = useForm();
@@ -50,7 +50,7 @@ const AskQuestionModal = (props) => {
             />
             <Form.Text className="text-muted">
               For privacy reasons, do not use your full name or email address
-              {errors.name && <p style={{ color: 'red' }}>Name is required</p>}
+              {errors.name && <p style={{ color: "red" }}>Name is required</p>}
             </Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
@@ -66,7 +66,7 @@ const AskQuestionModal = (props) => {
             />
             <Form.Text className="text-muted">
               {errors.email && (
-                <p style={{ color: 'red' }}>Email is required</p>
+                <p style={{ color: "red" }}>Email is required</p>
               )}
             </Form.Text>
           </Form.Group>
@@ -82,7 +82,7 @@ const AskQuestionModal = (props) => {
             />
             <Form.Text className="text-muted">
               {errors.body && (
-                <p style={{ color: 'red' }}>Question is required</p>
+                <p style={{ color: "red" }}>Question is required</p>
               )}
             </Form.Text>
           </Form.Group>

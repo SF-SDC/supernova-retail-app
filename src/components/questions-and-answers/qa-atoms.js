@@ -1,37 +1,37 @@
-import { atom, selector } from 'recoil';
+import { atom, selector } from "recoil";
 
 const displayAmountState = atom({
-  key: 'displayAmountState',
+  key: "displayAmountState",
   default: 4,
 });
 
 const allQuestionsState = atom({
-  key: 'allQuestionsState',
+  key: "allQuestionsState",
   default: [],
 });
 
 const quesitonIdState = atom({
-  key: 'quesitonIdState',
+  key: "quesitonIdState",
   default: null,
 });
 
 const addAnswerState = atom({
-  key: 'addAnswerState',
+  key: "addAnswerState",
   default: false,
 });
 
 const searchState = atom({
-  key: 'searchState',
-  default: '',
+  key: "searchState",
+  default: "",
 });
 
 const questionBody = atom({
-  key: 'questionBody',
-  default: 'Question Body',
+  key: "questionBody",
+  default: "Question Body",
 });
 
 const showSearchState = selector({
-  key: 'showSearchState',
+  key: "showSearchState",
   get: ({ get }) => {
     const legnth = get(searchState).length;
 

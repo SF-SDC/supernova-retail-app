@@ -19,7 +19,7 @@ const getRelatedProducts = (id = 66642) => {
   return axios.get(`${url}/products/${id}/related`);
 };
 
-const getQA = (id = 1) => {
+const getQA = (id = 66642) => {
   return axios.get(`${questionsURL}/qa/${id}`);
 };
 
@@ -78,11 +78,12 @@ const addToCart = (user_token, sku_id) => {
 };
 
 const getSpecificAnswers = (questionId) => {
+  // console.log("Question ID: ", questionId);
   return axios.get(`${questionsURL}/qa/${questionId}/answers`);
 };
 
 const askQuestion = (id, text, name, email) => {
-  return axios.post(`${url}/qa/${id}`, {
+  return axios.post(`${questionsURL}/qa/${id}`, {
     body: text,
     name: name,
     email: email,
@@ -90,7 +91,8 @@ const askQuestion = (id, text, name, email) => {
 };
 
 const answerQuestion = (questionId, text, name, email, photos = []) => {
-  return axios.post(`${url}/qa/${questionId}/answers`, {
+  console.log("Answer Question ID: ", questionId, text, name, email);
+  return axios.post(`${questionsURL}/qa/${questionId}/answers`, {
     body: text,
     name: name,
     email: email,
