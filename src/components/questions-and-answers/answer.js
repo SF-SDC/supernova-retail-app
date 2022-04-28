@@ -17,6 +17,7 @@ const Answer = (props) => {
       .getSpecificAnswers(props.id)
       .then(({ data }) => {
         setAnswer(data.results);
+
         if (data.results.length > 2) setShowMore(true);
       })
       .then((results) => console.log(results))

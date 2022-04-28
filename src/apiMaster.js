@@ -1,22 +1,22 @@
 import axios from "axios";
 const url = "http://127.0.0.1:1128";
-const questionsURL = "http://127.0.0.1:3000";
-const productUrl = "http://127.0.0.1:4000";
+const questionsURL = "http://44.200.201.196:3000";
+const productUrl = "http://18.188.122.145";
 
 const getProductList = () => {
-  return axios.get(`${url}/products`);
+  return axios.get(`${productUrl}/products`);
 };
 
 const getProductInfo = (id = 66642) => {
-  return axios.get(`${url}/products/${id}`);
+  return axios.get(`${productUrl}/products/${id}`);
 };
 
 const getProductStyles = (id = 66642) => {
-  return axios.get(`${url}/products/${id}/styles`);
+  return axios.get(`${productUrl}/products/${id}/styles`);
 };
 
 const getRelatedProducts = (id = 66642) => {
-  return axios.get(`${url}/products/${id}/related`);
+  return axios.get(`${productUrl}/products/${id}/related`);
 };
 
 const getQA = (id = 66642) => {
@@ -91,7 +91,7 @@ const askQuestion = (id, text, name, email) => {
 };
 
 const answerQuestion = (questionId, text, name, email, photos = []) => {
-  console.log("Answer Question ID: ", questionId, text, name, email);
+  console.log("Answer Question ID: ", questionId, text, name, email, photos);
   return axios.post(`${questionsURL}/qa/${questionId}/answers`, {
     body: text,
     name: name,
