@@ -169,7 +169,7 @@ class TextContainer extends React.Component {
                 <div
                   className="product-style-icon"
                   style={{
-                    backgroundImage: `url(${style.photos[0].thumbnail_url})`,
+                    backgroundImage: `url(${(style.photos.length) ? style.photos[0].thumbnail_url : 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'})`,
                   }}
                   onClick={() => this.props.updateSelectedStyle(index)}
                 >
@@ -202,7 +202,7 @@ class TextContainer extends React.Component {
                   </a>
                 ) : null
               ) : null}
-              {this.props.selectedStyle != undefined
+              {(this.props.selectedStyle != undefined && this.props.selectedStyle.skus != null)
                 ? Object.keys(this.props.selectedStyle.skus).map((key) => (
                     <a id={key} onClick={(event) => this.selectSize(event)}>
                       {key}
