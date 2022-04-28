@@ -2,6 +2,7 @@ import axios from "axios";
 const url = "http://127.0.0.1:1128";
 const questionsURL = "http://44.200.201.196:3000";
 const productUrl = "http://18.188.122.145";
+const reviewsUrl = "http://54.87.51.204:4005";
 
 const getProductList = () => {
   return axios.get(`${productUrl}/products`);
@@ -24,7 +25,7 @@ const getQA = (id = 66642) => {
 };
 
 const getReviewMetaData = (id = 66642) => {
-  return axios.get(`${url}/reviews/meta?product_id=${id}`);
+  return axios.get(`${reviewsUrl}/reviews/meta?product_id=${id}`);
 };
 
 const getReviewsOfProduct = (
@@ -33,12 +34,12 @@ const getReviewsOfProduct = (
   count = 20
 ) => {
   return axios.get(
-    `${url}/reviews?product_id=${id}&sort=${sortString}&count=${count}`
+    `${reviewsUrl}/reviews?product_id=${id}&sort=${sortString}&count=${count}`
   );
 };
 
 const reportReview = (reviewId) => {
-  return axios.put(`${url}/reviews/report/${reviewId}`);
+  return axios.put(`${reviewsUrl}/reviews/report/${reviewId}`);
 };
 
 const postReview = (
@@ -52,7 +53,7 @@ const postReview = (
   photos,
   characteristics
 ) => {
-  return axios.post(`${url}/reviews/${id}`, {
+  return axios.post(`${reviewsUrl}/reviews/${id}`, {
     rating: rating,
     summary: summary,
     body: body,
