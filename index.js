@@ -1,9 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-const axios = require('axios');
+require("dotenv").config();
+const express = require("express");
+const axios = require("axios");
 
 const app = express();
-app.use(express.static('dist'));
+app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -12,11 +12,20 @@ app.use((req, res, next) => {
   next();
 });
 
-const apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc';
+const apiUrl = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc";
 
-app.all('/*', (req, res) => {
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
+app.all("/*", (req, res) => {
   const targetUrl = apiUrl + req.url;
-  console.log('Req received: ', req.url);
+  console.log("Req received: ", req.url);
   axios({
     method: req.method,
     url: targetUrl,

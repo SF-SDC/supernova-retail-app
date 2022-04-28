@@ -1,32 +1,37 @@
 import axios from "axios";
 const url = "http://127.0.0.1:1128";
+const questionsURL = "http://44.200.201.196:3000";
 const productUrl = "http://18.188.122.145";
 
 const getProductList = () => {
   return axios.get(`${productUrl}/products`);
 };
 
-const getProductInfo = (id = 1) => {
+const getProductInfo = (id = 66642) => {
   return axios.get(`${productUrl}/products/${id}`);
 };
 
-const getProductStyles = (id = 1) => {
+const getProductStyles = (id = 66642) => {
   return axios.get(`${productUrl}/products/${id}/styles`);
 };
 
-const getRelatedProducts = (id = 1) => {
+const getRelatedProducts = (id = 66642) => {
   return axios.get(`${productUrl}/products/${id}/related`);
 };
 
 const getQA = (id = 66642) => {
-  return axios.get(`${url}/qa/questions?product_id=${id}`);
+  return axios.get(`${questionsURL}/qa/${id}`);
 };
 
 const getReviewMetaData = (id = 66642) => {
   return axios.get(`${url}/reviews/meta?product_id=${id}`);
 };
 
-const getReviewsOfProduct = (id = 66642, sortString = "relevant", count = 20) => {
+const getReviewsOfProduct = (
+  id = 66642,
+  sortString = "relevant",
+  count = 20
+) => {
   return axios.get(
     `${url}/reviews?product_id=${id}&sort=${sortString}&count=${count}`
   );
@@ -73,11 +78,12 @@ const addToCart = (user_token, sku_id) => {
 };
 
 const getSpecificAnswers = (questionId) => {
-  return axios.get(`${url}/qa/questions/${questionId}/answers`);
+  // console.log("Question ID: ", questionId);
+  return axios.get(`${questionsURL}/qa/${questionId}/answers`);
 };
 
 const askQuestion = (id, text, name, email) => {
-  return axios.post(`${url}/qa/${id}`, {
+  return axios.post(`${questionsURL}/qa/${id}`, {
     body: text,
     name: name,
     email: email,
@@ -85,7 +91,8 @@ const askQuestion = (id, text, name, email) => {
 };
 
 const answerQuestion = (questionId, text, name, email, photos = []) => {
-  return axios.post(`${url}/qa/${questionId}/answers`, {
+  console.log("Answer Question ID: ", questionId, text, name, email, photos);
+  return axios.post(`${questionsURL}/qa/${questionId}/answers`, {
     body: text,
     name: name,
     email: email,

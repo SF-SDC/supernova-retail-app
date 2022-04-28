@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import apiMaster from '../../apiMaster';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import moment from 'moment';
+import React, { useState, useEffect } from "react";
+import apiMaster from "../../apiMaster";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import moment from "moment";
 import Helpful from ".././ratings-and-reviews/helpful.js";
 import Report from ".././ratings-and-reviews/report.js";
 
@@ -17,8 +17,10 @@ const Answer = (props) => {
       .getSpecificAnswers(props.id)
       .then(({ data }) => {
         setAnswer(data.results);
+
         if (data.results.length > 2) setShowMore(true);
       })
+      .then((results) => console.log(results))
       .catch((err) => console.log(err));
   }, []);
 
@@ -26,30 +28,36 @@ const Answer = (props) => {
     <>
       <>
         {answers.slice(0, answerLen).map((answer) => {
-          let date = moment(answer.date).format('MMMM D, YYYY');
+          let date = moment(answer.date).format("MMMM D, YYYY");
           let by;
-          answer.answerer_name === 'Seller'
+          answer.answerer_name === "Seller"
             ? (by = <b>{answer.answerer_name}</b>)
             : (by = answer.answerer_name);
 
           return (
             <Card.Body key={answer.answer_id}>
               <Card.Title>A: {answer.body}</Card.Title>
-              {answer.photos.map((image) => {
-                return (
-                  <img
-                    key={image.url}
-                    src="https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80"
-                    style={{ maxHeight: '100px', maxWidth: '100px' }}
-                  />
-                );
-              })}
+              {answer.photos !== null
+                ? answer.photos.map((image) => {
+                    return (
+                      <img
+                        key={image}
+                        src={image}
+                        style={{ maxHeight: "100px", maxWidth: "100px" }}
+                      />
+                    );
+                  })
+                : null}
               <Card.Text>
-              <div className='helpful-wrapper'>
-                By: {by}, {date} | 
-                <Helpful id={answer.answer_id} widget='answer' helpfulCount={answer.helpfulness}/>
-                |<Report id={answer.answer_id} widget='answer'/>
-              </div>
+                <div className="helpful-wrapper">
+                  By: {by}, {date} |
+                  <Helpful
+                    id={answer.answer_id}
+                    widget="answer"
+                    helpfulCount={answer.helpfulness}
+                  />
+                  |<Report id={answer.answer_id} widget="answer" />
+                </div>
               </Card.Text>
             </Card.Body>
           );
@@ -71,7 +79,7 @@ const Answer = (props) => {
           </Button>
         </Card.Body>
       ) : (
-        ''
+        ""
       )}
 
       {showCollapse ? (
@@ -90,7 +98,7 @@ const Answer = (props) => {
           </Button>
         </Card.Body>
       ) : (
-        ''
+        ""
       )}
     </>
   );

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { useForm } from 'react-hook-form';
-import apiMaster from '../../apiMaster';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { quesitonIdState, questionBody } from './qa-atoms';
-import UplaodPhoto from './uploadPhoto';
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { useForm } from "react-hook-form";
+import apiMaster from "../../apiMaster";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { quesitonIdState, questionBody } from "./qa-atoms";
+import UplaodPhoto from "./uploadPhoto";
 
 const AddAnswerModal = (props) => {
   const { register, handleSubmit, errors } = useForm();
@@ -16,6 +16,7 @@ const AddAnswerModal = (props) => {
   const [photos, setPhotos] = useState([]);
 
   const onSubmit = (data) => {
+    console.log("Question ID: ", data, "QuestionID: ", questionID);
     apiMaster
       .answerQuestion(questionID, data.body, data.name, data.email, photos)
       .then(() => {
@@ -59,7 +60,7 @@ const AddAnswerModal = (props) => {
             />
             <Form.Text className="text-muted">
               For privacy reasons, do not use your full name or email address
-              {errors.name && <p style={{ color: 'red' }}>Name is required</p>}
+              {errors.name && <p style={{ color: "red" }}>Name is required</p>}
             </Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
@@ -76,7 +77,7 @@ const AddAnswerModal = (props) => {
             <Form.Text className="text-muted">
               For authentication reasons, you will not be emailed
               {errors.email && (
-                <p style={{ color: 'red' }}>Email is required</p>
+                <p style={{ color: "red" }}>Email is required</p>
               )}
             </Form.Text>
           </Form.Group>
@@ -92,14 +93,14 @@ const AddAnswerModal = (props) => {
             />
             <Form.Text className="text-muted">
               {errors.body && (
-                <p style={{ color: 'red' }}>Answer is required</p>
+                <p style={{ color: "red" }}>Answer is required</p>
               )}
             </Form.Text>
             <UplaodPhoto setPhoto={setPhotos} />
           </Form.Group>
           <Button variant="success" type="submit" className="qa-button">
             Submit
-          </Button>{' '}
+          </Button>{" "}
         </Form>
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
