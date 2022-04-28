@@ -160,14 +160,14 @@ class ProductCard extends React.Component {
                     </div>
                     <span
                       className={
-                        this.state.cardPrices[i].sale_price === '0'
+                        (!this.state.cardPrices[i] || this.state.cardPrices[i].sale_price === 0)
                           ? 'discounted-price-hidden'
                           : ''
                       }
                       style={
                         ({
                           textDecoration:
-                            this.state.cardPrices[i].sale_price !== '0'
+                            (this.state.cardPrices[i] && this.state.cardPrices[i].sale_price !== 0)
                               ? 'line-through'
                               : 'none',
                         },
@@ -175,7 +175,7 @@ class ProductCard extends React.Component {
                       }
                     >
                       {Number(
-                        this.state.cardPrices[i].sale_price
+                        (this.state.cardPrices[i] ? this.state.cardPrices[i].sale_price : 0)
                       ).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',
@@ -187,13 +187,13 @@ class ProductCard extends React.Component {
                       className="main-price-display"
                       style={{
                         textDecoration:
-                          this.state.cardPrices[i].sale_price !== '0'
+                          (this.state.cardPrices[i] && this.state.cardPrices[i].sale_price !== 0)
                             ? 'line-through'
                             : 'none',
                       }}
                     >
                       {Number(
-                        this.state.cardPrices[i].original_price
+                        (this.state.cardPrices[i] ? this.state.cardPrices[i].original_price : this.state.cardDetails[i].default_price)
                       ).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD',

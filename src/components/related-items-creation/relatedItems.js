@@ -20,6 +20,9 @@ class RelatedItems extends React.Component {
     this.removeDuplicateRelatedIds = this.removeDuplicateRelatedIds.bind(this);
   }
 
+  componentDidMount() {
+    this.getRelatedIds();
+  }
   componentDidUpdate(prevProps) {
     if (this.props.currentProductID !== prevProps.currentProductID) {
       // console.log('apiMaster: ', apiMaster);
